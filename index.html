@@ -1,0 +1,97 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="styles.css">
+
+		<title>Closet</title>
+	</head>
+
+	<body>
+		<button onclick="randomize()", style="margin-left:16px">Randomize</button>
+
+		<div class="wrapper">
+		  <div><img id="0" src="", width="100%", style="display:none"></div>
+		  <div><img id="1" src="", width="100%", style="display:none"></div>
+		  <div><img id="2" src="", width="100%", style="display:none"></div>
+		  <div><img id="3" src="", width="100%", style="display:none"></div>
+		  <div><img id="4" src="", width="100%", style="display:none"></div>
+
+		  <div><img id="5" src="", width="100%", style="display:none"></div>
+		  <div><img id="6" src="", width="100%", style="display:none"></div>
+		  <div><img id="7" src="", width="100%", style="display:none"></div>
+		  <div><img id="8" src="", width="100%", style="display:none"></div>
+		  <div><img id="9" src="", width="100%", style="display:none"></div>
+
+		  <div><img id="10", src="", width="100%", style="display:none"></div>
+		  <div><img id="11", src="", width="100%", style="display:none"></div>
+		  <div><img id="12", src="", width="100%", style="display:none"></div>
+		  <div><img id="13", src="", width="100%", style="display:none"></div>
+		  <div><img id="14", src="", width="100%", style="display:none"></div>
+
+		  <div><img id="15", src="", width="100%", style="display:none"></div>
+		  <div><img id="16", src="", width="100%", style="display:none"></div>
+		  <div><img id="17", src="", width="100%", style="display:none"></div>
+		  <div><img id="18", src="", width="100%", style="display:none"></div>
+		  <div><img id="19", src="", width="100%", style="display:none"></div>
+
+		  <div><img id="20", src="", width="100%", style="display:none"></div>
+		  <div><img id="21", src="", width="100%", style="display:none"></div>
+		  <div><img id="22", src="", width="100%", style="display:none"></div>
+		  <div><img id="23", src="", width="100%", style="display:none"></div>
+		  <div><img id="24", src="", width="100%", style="display:none"></div>
+		</div>
+	</body>
+</html>
+
+<script>
+	function clear() {
+		for (var i = 0; i < 25; i++) {
+			var cell = document.getElementById(String(i))
+			cell.src = "";
+			cell.style = "display:none";
+		}
+	}
+
+	function randomize() {
+		clear();
+
+		var arr = [];
+		while (arr.length < 11) {
+		    var r = Math.floor(Math.random() * 25);
+
+		    if (arr.indexOf(r) === -1) {
+		    	arr.push(r);
+		    }
+		}
+
+		arr = arr.map(String);
+		for (var i = 0; i < 2; i++) {
+			var cell = document.getElementById(arr[i])
+			cell.src = "red_box.png";
+			cell.style = "display:show";
+		}
+
+		for (var i = 2; i < 4; i++) {
+			var cell = document.getElementById(arr[i])
+			cell.src = "gray_box.png";
+			cell.style = "display:show";
+		}
+
+		for (var i = 4; i < 6; i++) {
+			var cell = document.getElementById(arr[i])
+			cell.src = "white_box.png";
+			cell.style = "display:show";
+		}
+
+		for (var i = 6; i < 8; i++) {
+			var cell = document.getElementById(arr[i])
+			cell.src = "drawer.png";
+			cell.style = "display:show";
+		}
+
+		for (var i = 8; i < 11; i++) {
+			var cell = document.getElementById(arr[i])
+			cell.src = "door.png";
+			cell.style = "display:show";
+		}
+	}
+</script>
