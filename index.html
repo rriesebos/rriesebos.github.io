@@ -10,25 +10,33 @@
 			}
 
 			function drag(ev) {
-				ev.dataTransfer.setData("text", ev.target.id);
+				ev.dataTransfer.setData("id", ev.target.id);
+				ev.dataTransfer.setData("src", ev.target.src);
 			}
 
 			function drop(ev) {
 				ev.preventDefault();
-				var data = ev.dataTransfer.getData("text");
-				ev.target.appendChild(document.getElementById(data));
+				
+				var src = ev.dataTransfer.getData("src");
+				ev.target.firstChild.src = src;
+
+				var id = ev.dataTransfer.getData("id");
+				clear(id);
 			}
 
-			function clear() {
+			function clear(id) {
+				var cell = document.getElementById(id);
+				cell.src = "";
+			}
+
+			function clearAll() {
 				for (var i = 0; i < 25; i++) {
-					var cell = document.getElementById(String(i))
-					cell.src = "";
-					cell.style = "display:none";
+					clear(String(i));
 				}
 			}
 
 			function randomize() {
-				clear();
+				clearAll();
 
 				var arr = [];
 				while (arr.length < 11) {
@@ -43,31 +51,26 @@
 				for (var i = 0; i < 2; i++) {
 					var cell = document.getElementById(arr[i])
 					cell.src = "red_box.png";
-					cell.style = "display:show";
 				}
 
 				for (var i = 2; i < 4; i++) {
 					var cell = document.getElementById(arr[i])
 					cell.src = "gray_box.png";
-					cell.style = "display:show";
 				}
 
 				for (var i = 4; i < 6; i++) {
 					var cell = document.getElementById(arr[i])
 					cell.src = "white_box.png";
-					cell.style = "display:show";
 				}
 
 				for (var i = 6; i < 8; i++) {
 					var cell = document.getElementById(arr[i])
 					cell.src = "drawer.png";
-					cell.style = "display:show";
 				}
 
 				for (var i = 8; i < 11; i++) {
 					var cell = document.getElementById(arr[i])
 					cell.src = "door.png";
-					cell.style = "display:show";
 				}
 			}
 		</script>
@@ -77,35 +80,35 @@
 		<button onclick="randomize()", style="margin-left:16px">Randomize</button>
 
 		<div class="wrapper">
-		  <div ondrop="drop(event)" ondragover="allowDrop(event)"><img id="0" src="", width="100%", style="display:none", draggable="true" ondragstart="drag(event)"></div>
-		  <div ondrop="drop(event)" ondragover="allowDrop(event)"><img id="1" src="", width="100%", style="display:none", draggable="true" ondragstart="drag(event)"></div>
-		  <div ondrop="drop(event)" ondragover="allowDrop(event)"><img id="2" src="", width="100%", style="display:none", draggable="true" ondragstart="drag(event)"></div>
-		  <div ondrop="drop(event)" ondragover="allowDrop(event)"><img id="3" src="", width="100%", style="display:none", draggable="true" ondragstart="drag(event)"></div>
-		  <div ondrop="drop(event)" ondragover="allowDrop(event)"><img id="4" src="", width="100%", style="display:none", draggable="true" ondragstart="drag(event)"></div>
+		  <div ondrop="drop(event)", ondragover="allowDrop(event)"><img id="0", src="", width="100%", draggable="true", ondragstart="drag(event)"></div>
+		  <div ondrop="drop(event)", ondragover="allowDrop(event)"><img id="1", src="", width="100%", draggable="true", ondragstart="drag(event)"></div>
+		  <div ondrop="drop(event)", ondragover="allowDrop(event)"><img id="2", src="", width="100%", draggable="true", ondragstart="drag(event)"></div>
+		  <div ondrop="drop(event)", ondragover="allowDrop(event)"><img id="3", src="", width="100%", draggable="true", ondragstart="drag(event)"></div>
+		  <div ondrop="drop(event)", ondragover="allowDrop(event)"><img id="4", src="", width="100%", draggable="true", ondragstart="drag(event)"></div>
 
-		  <div ondrop="drop(event)" ondragover="allowDrop(event)"><img id="5" src="", width="100%", style="display:none", draggable="true" ondragstart="drag(event)"></div>
-		  <div ondrop="drop(event)" ondragover="allowDrop(event)"><img id="6" src="", width="100%", style="display:none", draggable="true" ondragstart="drag(event)"></div>
-		  <div ondrop="drop(event)" ondragover="allowDrop(event)"><img id="7" src="", width="100%", style="display:none", draggable="true" ondragstart="drag(event)"></div>
-		  <div ondrop="drop(event)" ondragover="allowDrop(event)"><img id="8" src="", width="100%", style="display:none", draggable="true" ondragstart="drag(event)"></div>
-		  <div ondrop="drop(event)" ondragover="allowDrop(event)"><img id="9" src="", width="100%", style="display:none", draggable="true" ondragstart="drag(event)"></div>
+		  <div ondrop="drop(event)", ondragover="allowDrop(event)"><img id="5", src="", width="100%", draggable="true", ondragstart="drag(event)"></div>
+		  <div ondrop="drop(event)", ondragover="allowDrop(event)"><img id="6", src="", width="100%", draggable="true", ondragstart="drag(event)"></div>
+		  <div ondrop="drop(event)", ondragover="allowDrop(event)"><img id="7", src="", width="100%", draggable="true", ondragstart="drag(event)"></div>
+		  <div ondrop="drop(event)", ondragover="allowDrop(event)"><img id="8", src="", width="100%", draggable="true", ondragstart="drag(event)"></div>
+		  <div ondrop="drop(event)", ondragover="allowDrop(event)"><img id="9", src="", width="100%", draggable="true", ondragstart="drag(event)"></div>
 
-		  <div ondrop="drop(event)" ondragover="allowDrop(event)"><img id="10", src="", width="100%", style="display:none", draggable="true" ondragstart="drag(event)"></div>
-		  <div ondrop="drop(event)" ondragover="allowDrop(event)"><img id="11", src="", width="100%", style="display:none", draggable="true" ondragstart="drag(event)"></div>
-		  <div ondrop="drop(event)" ondragover="allowDrop(event)"><img id="12", src="", width="100%", style="display:none", draggable="true" ondragstart="drag(event)"></div>
-		  <div ondrop="drop(event)" ondragover="allowDrop(event)"><img id="13", src="", width="100%", style="display:none", draggable="true" ondragstart="drag(event)"></div>
-		  <div ondrop="drop(event)" ondragover="allowDrop(event)"><img id="14", src="", width="100%", style="display:none", draggable="true" ondragstart="drag(event)"></div>
+		  <div ondrop="drop(event)", ondragover="allowDrop(event)"><img id="10", src="", width="100%", draggable="true", ondragstart="drag(event)"></div>
+		  <div ondrop="drop(event)", ondragover="allowDrop(event)"><img id="11", src="", width="100%", draggable="true", ondragstart="drag(event)"></div>
+		  <div ondrop="drop(event)", ondragover="allowDrop(event)"><img id="12", src="", width="100%", draggable="true", ondragstart="drag(event)"></div>
+		  <div ondrop="drop(event)", ondragover="allowDrop(event)"><img id="13", src="", width="100%", draggable="true", ondragstart="drag(event)"></div>
+		  <div ondrop="drop(event)", ondragover="allowDrop(event)"><img id="14", src="", width="100%", draggable="true", ondragstart="drag(event)"></div>
 
-		  <div ondrop="drop(event)" ondragover="allowDrop(event)"><img id="15", src="", width="100%", style="display:none", draggable="true" ondragstart="drag(event)"></div>
-		  <div ondrop="drop(event)" ondragover="allowDrop(event)"><img id="16", src="", width="100%", style="display:none", draggable="true" ondragstart="drag(event)"></div>
-		  <div ondrop="drop(event)" ondragover="allowDrop(event)"><img id="17", src="", width="100%", style="display:none", draggable="true" ondragstart="drag(event)"></div>
-		  <div ondrop="drop(event)" ondragover="allowDrop(event)"><img id="18", src="", width="100%", style="display:none", draggable="true" ondragstart="drag(event)"></div>
-		  <div ondrop="drop(event)" ondragover="allowDrop(event)"><img id="19", src="", width="100%", style="display:none", draggable="true" ondragstart="drag(event)"></div>
-		  
-		  <div ondrop="drop(event)" ondragover="allowDrop(event)"><img id="20", src="", width="100%", style="display:none", draggable="true" ondragstart="drag(event)"></div>
-		  <div ondrop="drop(event)" ondragover="allowDrop(event)"><img id="21", src="", width="100%", style="display:none", draggable="true" ondragstart="drag(event)"></div>
-		  <div ondrop="drop(event)" ondragover="allowDrop(event)"><img id="22", src="", width="100%", style="display:none", draggable="true" ondragstart="drag(event)"></div>
-		  <div ondrop="drop(event)" ondragover="allowDrop(event)"><img id="23", src="", width="100%", style="display:none", draggable="true" ondragstart="drag(event)"></div>
-		  <div ondrop="drop(event)" ondragover="allowDrop(event)"><img id="24", src="", width="100%", style="display:none", draggable="true" ondragstart="drag(event)"></div>
+		  <div ondrop="drop(event)", ondragover="allowDrop(event)"><img id="15", src="", width="100%", draggable="true", ondragstart="drag(event)"></div>
+		  <div ondrop="drop(event)", ondragover="allowDrop(event)"><img id="16", src="", width="100%", draggable="true", ondragstart="drag(event)"></div>
+		  <div ondrop="drop(event)", ondragover="allowDrop(event)"><img id="17", src="", width="100%", draggable="true", ondragstart="drag(event)"></div>
+		  <div ondrop="drop(event)", ondragover="allowDrop(event)"><img id="18", src="", width="100%", draggable="true", ondragstart="drag(event)"></div>
+		  <div ondrop="drop(event)", ondragover="allowDrop(event)"><img id="19", src="", width="100%", draggable="true", ondragstart="drag(event)"></div>
+
+		  <div ondrop="drop(event)", ondragover="allowDrop(event)"><img id="20", src="", width="100%", draggable="true", ondragstart="drag(event)"></div>
+		  <div ondrop="drop(event)", ondragover="allowDrop(event)"><img id="21", src="", width="100%", draggable="true", ondragstart="drag(event)"></div>
+		  <div ondrop="drop(event)", ondragover="allowDrop(event)"><img id="22", src="", width="100%", draggable="true", ondragstart="drag(event)"></div>
+		  <div ondrop="drop(event)", ondragover="allowDrop(event)"><img id="23", src="", width="100%", draggable="true", ondragstart="drag(event)"></div>
+		  <div ondrop="drop(event)", ondragover="allowDrop(event)"><img id="24", src="", width="100%", draggable="true", ondragstart="drag(event)"></div>
 		</div>
 	</body>
 </html>
