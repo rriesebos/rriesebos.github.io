@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<link rel="stylesheet" href="styles.css">
+		<link rel="stylesheet" href="closet/styles.css">
 
 		<title>Closet</title>
 
@@ -16,7 +16,7 @@
 
 			function drop(ev) {
 				ev.preventDefault();
-				
+
 				var src = ev.dataTransfer.getData("src");
 				ev.target.firstChild.src = src;
 
@@ -50,27 +50,27 @@
 				arr = arr.map(String);
 				for (var i = 0; i < 2; i++) {
 					var cell = document.getElementById(arr[i])
-					cell.src = "red_box.png";
+					cell.src = "closet/red_box.png";
 				}
 
 				for (var i = 2; i < 4; i++) {
 					var cell = document.getElementById(arr[i])
-					cell.src = "gray_box.png";
+					cell.src = "closet/gray_box.png";
 				}
 
 				for (var i = 4; i < 6; i++) {
 					var cell = document.getElementById(arr[i])
-					cell.src = "white_box.png";
+					cell.src = "closet/white_box.png";
 				}
 
 				for (var i = 6; i < 8; i++) {
 					var cell = document.getElementById(arr[i])
-					cell.src = "drawer.png";
+					cell.src = "closet/drawer.png";
 				}
 
 				for (var i = 8; i < 11; i++) {
 					var cell = document.getElementById(arr[i])
-					cell.src = "door.png";
+					cell.src = "closet/door.png";
 				}
 			}
 		</script>
