@@ -1,0 +1,74 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+}
+
+#root,
+#__next {
+    isolation: isolate;
+}
+
+.grid {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    flex-wrap: wrap;
+    place-items: center;
+    justify-content: space-evenly;
+}
+
+.tile {
+    display: inline-block;
+    border: solid 1px black;
+    border-radius: 10%;
+    aspect-ratio: 1 / 1;
+    perspective: 500px;
+
+    transition: background-color 0.5s, transform 0.5s;
+    transform-style: preserve-3d;
+}
+
+.tile:hover {
+    transform: rotateY(180deg);
+}
