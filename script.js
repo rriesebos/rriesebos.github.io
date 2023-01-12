@@ -53,11 +53,11 @@ window.addEventListener("resize", () => {
 
 let displayIndex = 0;
 draw();
+randomizeBorderRadius();
 setInterval(draw, ALTERNATE_SPEED);
 
 function draw() {
     drawLetters(DISPLAY_TEXTS[displayIndex++ % DISPLAY_TEXTS.length]);
-    randomizeBorderRadius();
 }
 
 function fillGrid() {
@@ -223,7 +223,7 @@ function drawLetters(words) {
 function resetTile(tile) {
     tile.classList.remove("active");
     tile.style.background = "";
-    tile.style.borderRadius = "";
+    //tile.style.borderRadius = "";
 }
 
 function clearGrid() {
