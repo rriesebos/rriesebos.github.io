@@ -114,6 +114,7 @@ body {
     border: dotted 3px var(--letter-border-color);
 }
 
-.tile:hover {
+.tile.animate {
+    animation: linear 0.5s;
     transform: rotateY(180deg);
 }

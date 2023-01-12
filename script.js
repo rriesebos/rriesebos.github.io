@@ -98,9 +98,22 @@ function fillGrid() {
     tileSize -= 2 * tileMargin;
 
     // Reset grid and add tiles
-    grid.innerHTML = `<div class="tile" style="width: ${tileSize}px; margin: ${tileMargin}px"></div>`.repeat(
-        optimalRows * optimalColumns
-    );
+    grid.innerHTML = "";
+    for (let i = 0; i < optimalRows; i++) {
+        for (let j = 0; j < optimalColumns; j++) {
+            let tile = document.createElement("div");
+
+            tile.classList.add("tile");
+
+            tile.style.width = `${tileSize}px`;
+            tile.style.margin = `${tileMargin}px`;
+
+            grid.appendChild(tile);
+
+            tile.onmouseover = () => tile.classList.add("animate");
+            tile.onanimationend = () => tile.classList.remove("animate");
+        }
+    }
 
     return [optimalRows, optimalColumns];
 }
