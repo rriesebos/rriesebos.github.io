@@ -104,7 +104,7 @@ body {
     aspect-ratio: 1 / 1;
     perspective: 500px;
 
-    transition: background-color 0.5s, transform 0.5s;
+    transition: background-color 0.5s;
     transform-style: preserve-3d;
 }
 
@@ -117,4 +117,5 @@ body {
 .tile.animate {
     animation: linear 0.5s;
     transform: rotateY(180deg);
+    transition: transform 0.5s;
 }

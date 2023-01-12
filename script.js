@@ -53,7 +53,6 @@ window.addEventListener("resize", () => {
 
 let displayIndex = 0;
 draw();
-randomizeBorderRadius();
 setInterval(draw, ALTERNATE_SPEED);
 
 function draw() {
@@ -107,24 +106,16 @@ function fillGrid() {
 
             tile.style.width = `${tileSize}px`;
             tile.style.margin = `${tileMargin}px`;
+            tile.style.borderRadius = `${Math.random() * MAX_TILE_BORDER_RADIUS}%`;
 
             grid.appendChild(tile);
 
             tile.onmouseover = () => tile.classList.add("animate");
-            tile.onanimationend = () => tile.classList.remove("animate");
+            tile.ontransitionend = () => tile.classList.remove("animate");
         }
     }
 
     return [optimalRows, optimalColumns];
-}
-
-function randomizeBorderRadius() {
-    for (let i = 0; i < rows; i++) {
-        for (let j = 0; j < columns; j++) {
-            let tile = grid.children[i * columns + j];
-            tile.style.borderRadius = `${Math.random() * MAX_TILE_BORDER_RADIUS}%`;
-        }
-    }
 }
 
 function animate() {
