@@ -1,9 +1,12 @@
 const grid = document.querySelector(".grid");
 
 const TARGET_TILE_COUNT = 2000;
+
 const TILE_MARGIN = 1;
 const GRID_PADDING = 2 * TILE_MARGIN;
+
 const LETTER_SIZE = 6;
+const NEWLINE_GAP = 3;
 
 const DEFAULT_TILE_BORDER_RADIUS = 10;
 const MAX_TILE_BORDER_RADIUS = 50;
@@ -143,7 +146,7 @@ function getTextHeight(wordList, maxLetters) {
     }
 
     // Letter height + newline spacing + spacing between normal lines
-    return lines * LETTER_SIZE + newLines * 2 + lines - newLines - 1;
+    return lines * LETTER_SIZE + newLines * NEWLINE_GAP + lines - newLines - 1;
 }
 
 function drawLetter(letter, offsetX, offsetY) {
@@ -187,8 +190,8 @@ function drawLetters(words) {
     let offsetY = startOffsetY;
     for (let letter of words) {
         if (letter === "\n") {
-            // Place a two-tile gap between new lines
-            offsetY += LETTER_SIZE + 2;
+            // Place a gap between new lines
+            offsetY += LETTER_SIZE + NEWLINE_GAP;
             offsetX = startOffsetX;
             continue;
         }
