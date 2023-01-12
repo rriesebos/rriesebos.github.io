@@ -49,6 +49,44 @@ h6 {
     isolation: isolate;
 }
 
+@media (prefers-color-scheme: dark) {
+    body {
+        --background-color: black;
+    }
+
+    .tile {
+        --tile-color: #161616;
+        --tile-border-color: #5a5a5a;
+    }
+
+    .tile.active {
+        --saturation: 80%;
+        --letter-color: #a8201a;
+        --letter-border-color: white;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    body {
+        --background-color: white;
+    }
+
+    .tile {
+        --tile-color: white;
+        --tile-border-color: #5a5a5a;
+    }
+
+    .tile.active {
+        --saturation: 100%;
+        --letter-color: #a8201a;
+        --letter-border-color: black;
+    }
+}
+
+body {
+    background-color: var(--background-color);
+}
+
 .grid {
     display: flex;
     height: 100vh;
@@ -60,13 +98,20 @@ h6 {
 
 .tile {
     display: inline-block;
-    border: solid 1px black;
+    background-color: var(--tile-color);
+    border: solid 1px var(--tile-border-color);
     border-radius: 10%;
     aspect-ratio: 1 / 1;
     perspective: 500px;
 
     transition: background-color 0.5s, transform 0.5s;
     transform-style: preserve-3d;
+}
+
+.tile.active {
+    filter: saturate(var(--saturation));
+    background-color: var(--letter-color);
+    border: dotted 3px var(--letter-border-color);
 }
 
 .tile:hover {

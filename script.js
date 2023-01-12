@@ -3,10 +3,10 @@ const grid = document.querySelector(".grid");
 const TARGET_TILE_COUNT = 2000;
 const TILE_MARGIN = 1;
 const GRID_PADDING = 2 * TILE_MARGIN;
-
-const TILE_COLOR = "white";
-const LETTER_COLOR = "#A8201A";
 const LETTER_SIZE = 6;
+
+const DEFAULT_TILE_BORDER_RADIUS = 10;
+const MAX_TILE_BORDER_RADIUS = 50;
 
 const ALPHABET = {
     a: [0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1],
@@ -38,10 +38,9 @@ const ALPHABET = {
 };
 
 const DISPLAY_TEXTS = ["Robert\nRiesebos", "Software\nEngineer"];
-const ALTERNATE_SPEED = 6000;
+const ALTERNATE_SPEED = 8000;
 
 let [rows, columns] = fillGrid();
-drawLetters(DISPLAY_TEXTS[0]);
 
 window.addEventListener("resize", () => {
     console.log("Reflowing grid");
@@ -49,10 +48,14 @@ window.addEventListener("resize", () => {
     drawLetters(DISPLAY_TEXTS[0]);
 });
 
-let displayIndex = 1;
-setInterval(function () {
+let displayIndex = 0;
+draw();
+setInterval(draw, ALTERNATE_SPEED);
+
+function draw() {
     drawLetters(DISPLAY_TEXTS[displayIndex++ % DISPLAY_TEXTS.length]);
-}, ALTERNATE_SPEED);
+    randomizeBorderRadius();
+}
 
 function fillGrid() {
     grid.style.padding = `${GRID_PADDING}px`;
@@ -99,6 +102,15 @@ function fillGrid() {
     return [optimalRows, optimalColumns];
 }
 
+function randomizeBorderRadius() {
+    for (let i = 0; i < rows; i++) {
+        for (let j = 0; j < columns; j++) {
+            let tile = grid.children[i * columns + j];
+            tile.style.borderRadius = `${Math.random() * MAX_TILE_BORDER_RADIUS}%`;
+        }
+    }
+}
+
 function animate() {
     for (let i = 0; i < rows; i++) {
         for (let j = 0; j < columns; j++) {
@@ -109,20 +121,7 @@ function animate() {
 }
 
 function randomHsl() {
-    return "hsl(" + Math.random() * 360 + ", 100%, 50%)";
-}
-
-function drawLetter(letter, offsetX, offsetY) {
-    const letterGrid = ALPHABET[letter.toLowerCase()];
-    const randomColor = randomHsl();
-
-    for (let i = 0; i < LETTER_SIZE; i++) {
-        for (let j = 0; j < LETTER_SIZE; j++) {
-            grid.children[(i + offsetY) * columns + (j + offsetX)].style.background = letterGrid[i * LETTER_SIZE + j]
-                ? randomColor
-                : TILE_COLOR;
-        }
-    }
+    return `hsl(${Math.random() * 360}, 100%, 50%)`;
 }
 
 function getTextWidth(wordLength) {
@@ -145,6 +144,24 @@ function getTextHeight(wordList, maxLetters) {
 
     // Letter height + newline spacing + spacing between normal lines
     return lines * LETTER_SIZE + newLines * 2 + lines - newLines - 1;
+}
+
+function drawLetter(letter, offsetX, offsetY) {
+    const letterGrid = ALPHABET[letter.toLowerCase()];
+
+    for (let i = 0; i < LETTER_SIZE; i++) {
+        for (let j = 0; j < LETTER_SIZE; j++) {
+            const tile = grid.children[(i + offsetY) * columns + (j + offsetX)];
+            const active = letterGrid[i * LETTER_SIZE + j];
+
+            if (active) {
+                tile.classList.add("active");
+                tile.style.background = randomHsl();
+            } else {
+                tile.classList.remove("active");
+            }
+        }
+    }
 }
 
 function drawLetters(words) {
@@ -187,11 +204,17 @@ function drawLetters(words) {
     }
 }
 
+function resetTile(tile) {
+    tile.classList.remove("active");
+    tile.style.background = "";
+    tile.style.borderRadius = "";
+}
+
 function clearGrid() {
     for (let i = 0; i < rows; i++) {
         for (let j = 0; j < columns; j++) {
             let tile = grid.children[i * columns + j];
-            tile.style.background = TILE_COLOR;
+            resetTile(tile);
         }
     }
 }
