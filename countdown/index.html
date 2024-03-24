@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Amerika Countdown</title>
+
+        <link rel="stylesheet" href="style.css" />
+        <script src="countdown.js" defer></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
+    </head>
+    <body>
+        <script>
+            const dimensions = `${window.innerWidth}x${window.innerHeight}`;
+
+            const nationalParks = {
+                "Arches National Park": "arches%20national%20park",
+                "Yosemite National Park": "yosemite",
+                "Sequoia National Park": "sequoia",
+                "Grand Canyon": "grand%20canyon",
+                "Zion National Park": "zion%20national%20park",
+                "Bryce Canyon": "bryce%20canyon",
+                Yellowstone: "yellowstone",
+                "Glacier National Park": "glacier%20national%20park",
+                "Mount Rainier": "mount%20rainier",
+                "Grand Teton National Park": "grand%20teton",
+                "Olympic National Park": "olympic%20national%20park",
+            };
+
+            const nationalParkEntries = Object.entries(nationalParks);
+            const randomIndex = Math.floor(Math.random() * nationalParkEntries.length);
+            const [label, searchTerm] = nationalParkEntries[randomIndex];
+
+            document.body.style.backgroundImage = `url("https://source.unsplash.com/random/${dimensions}/?${searchTerm}")`;
+        </script>
+
+        <div class="container">
+            <h1 id="headline">Vakantie Amerika Countdown</h1>
+            <div id="countdown">
+                <ul>
+                    <li><span id="days"></span>Days</li>
+                    <li><span id="hours"></span>Hours</li>
+                    <li><span id="minutes"></span>Minutes</li>
+                    <li><span id="seconds"></span>Seconds</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="source"></div>
+    </body>
+</html>
